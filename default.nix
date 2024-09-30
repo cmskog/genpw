@@ -1,4 +1,4 @@
-{ coreutils, writeShellScriptBin, xclip } :
+{ coreutils, writeShellScriptBin } :
 writeShellScriptBin
   "genpw"
   ''
@@ -49,9 +49,5 @@ writeShellScriptBin
     ${coreutils}/bin/tr -dc "$DELETE_ALL_EXCEPT" || :
   } \
   | \
-  ${coreutils}/bin/head -c $PWLEN \
-  | \
-  ${xclip}/bin/xclip -i -sel p
-
-  echo "Generated password: '$(${xclip}/bin/xclip -o -sel p)'"
+  ${coreutils}/bin/head -c $PWLEN
   ''
